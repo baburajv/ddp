@@ -1,0 +1,73 @@
+---
+title: "Carat-Price Relation in Diamonds"
+author: "Baburaj Velayudhan"
+date: "20.04.2019"
+output:
+  slidy_presentation: default
+  html_document:
+    number_sections: yes
+    toc: yes
+  ioslides_presentation: default
+mode: selfcontained
+job: Reproducible Pitch Presentation
+subtitle: Carat - Price
+highlighter: highlight.js
+widgets: bootstrap
+---
+
+## Coursera Reproducible Pitch
+This presentation and the associated shiny app conclude the Coursera course: Developing Data products. Included in this project are: <br/>
+this presentation, <br/>
+providing an overview, code examples and links<br/>
+a shiny app hosted on shinyapp.io<br/>
+the corresponding source code hosted via github
+### Find all project requirements here
+URL: *https://www.coursera.org/learn/data-products/peer/tMYrn/course-project-shiny-application-and-reproducible-pitch*
+### Find the source code here
+URL: *https://www.coursera.org/learn/data-products/peer/tMYrn/course-project-shiny-application-and-reproducible-pitch*
+### Find the hosted shinyapphere
+URL: *https://baburajv.shinyapps.io/ddpwk4/*
+
+---
+## Diamonds Dataset
+
+**A dataset containing the prices and other attributes of almost 53940 diamonds.**<br/>
+The variables are <br/>
+     price - price in US dollars (\$326--\$18,823)<br/>
+     carat - weight of the diamond (0.2--5.01)<br/>
+     cut - quality of the cut (Fair, Good, Very Good, Premium, Ideal)<br/>
+     color - diamond colour, from J (worst) to D (best)<br/>
+     clarity - a measurement of how clear the diamond is <br/>
+     x - length in mm (0--10.74)<br/>
+     y - width in mm (0--58.9)<br/>
+     z - depth in mm (0--31.8)<br/>
+     depth - total depth percentage = z / mean(x, y) = 2 * z / (x + y) (43--79)<br/>
+     table - width of top of diamond relative to widest point (43--95)
+
+---
+## Diamonds Dataset Data
+```{r}
+library('ggplot2')
+head(diamonds)
+```
+
+---
+## Analysis - Server code
+
+```r
+output$predict <- renderPrint({
+    diamonds_sub <-
+      subset(
+        diamonds,
+        cut == input$cut &
+          color == input$color &
+          clarity == input$clarity
+      )
+    
+    fit <- lm(price~carat,data=diamonds_sub)
+    
+    unname(predict(fit, data.frame(carat = input$lm)))
+  })
+  
+```
+Based on the selected subset and the carat value a predicted price value is printed in the UI.
