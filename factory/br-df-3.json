@@ -1,0 +1,22 @@
+{
+	"name": "br-df-3",
+	"properties": {
+		"encryption": {
+			"VaultBaseUrl": "https://brkeyvalut3.vault.azure.net/",
+			"KeyName": "brkey2",
+			"KeyVersion": "9801c86714f542d590684dbbbb7e6d22"
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned,UserAssigned",
+		"principalId": "b9d8bd91-a5bf-4f98-9a72-6018024a6a5f",
+		"tenantId": "b39138ca-3cee-4b4a-a4d6-cd83d9dd62f0",
+		"userAssignedIdentities": {
+			"/subscriptions/b20e06b3-5e0c-4ebe-8dfd-e17fa4538cd2/resourcegroups/brVrops/providers/Microsoft.ManagedIdentity/userAssignedIdentities/brmi": {
+				"clientId": "f1d8a5d0-9205-4234-8561-8c571d05c50a",
+				"principalId": "fd1a5208-cc2d-4076-933c-4bd5168a713f"
+			}
+		}
+	}
+}
